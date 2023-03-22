@@ -25,6 +25,7 @@ public class Arrow
             });
         
         alarmTime
+            .Skip(1)
             .Subscribe(x =>
             {
                 UpdateAlarmRotation(x.ConvertToSeconds(), arrowType);

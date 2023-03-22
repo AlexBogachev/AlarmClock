@@ -13,4 +13,8 @@
 
     public int ConvertToSeconds()
         => Seconds + ClockHandler.SECONDS_IN_MINUTE * Minutes + ClockHandler.SECONDS_IN_HOUR * Hours;
+
+    public TimeData Clone()
+        => new TimeData(Hours, Minutes, Seconds);
+
 }

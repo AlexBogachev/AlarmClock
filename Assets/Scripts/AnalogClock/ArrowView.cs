@@ -9,10 +9,19 @@ public class ArrowView : MonoBehaviour
     [Inject]
     private void Constructor(ReactiveProperty<float>angle, int angleStep, ArrowType type, 
                              IReactiveProperty<ClockMode> clockMode,
+                             [Inject(Id = ZenjectIDs.ALARM_TIME)] ReactiveProperty<TimeData> alarmTime,
                              [Inject(Id = ZenjectIDs.ARROW_CHANGED_ALARM)] Subject<(ArrowType type, int roundedValue)> alarmAngleValue)
     {
         angle
             .Subscribe(x => SetRotation(x))
+            .AddTo(this);
+
+        clockMode
+            .Where(x=>clockMode.Value == ClockMode.Alarm)
+            .Subscribe(x => 
+            {
+                alarmTime.SetValueAndForceNotify(alarmTime.Value);
+            })
             .AddTo(this);
 
         var image = GetComponentInChildren<Image>();
