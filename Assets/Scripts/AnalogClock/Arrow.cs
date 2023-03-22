@@ -1,5 +1,4 @@
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 public class Arrow

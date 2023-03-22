@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 public enum ArrowType
